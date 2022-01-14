@@ -1,0 +1,66 @@
+﻿using Example.Blog.Domain.Enums;
+using Example.Blog.Domain.Interfaces.Models;
+using Example.Blog.Domain.Interfaces.Services;
+using Newtonsoft.Json;
+
+namespace Example.Blog.BL.Services
+{
+    public class StagingAreaService : IStagingAreaService
+    {
+        private readonly IRegistryHandler _registryHandler;
+
+        // Constructor
+        public StagingAreaService(IRegistryHandler registryHandler)
+        {
+            _registryHandler = registryHandler;
+        }
+
+        /// <summary>
+        /// Insert an event of Insert in Staging Area
+        /// </summary>
+        /// <param name="postData"></param>
+        /// <returns></returns>
+        public bool RegistryPostInsert(IPost postData)
+        {
+            return this.InsertPostEntry("Insert", postData);
+        }
+
+        /// <summary>
+        /// Insert an event of Update in Staging Area
+        /// </summary>
+        /// <param name="postData"></param>
+        /// <returns></returns>
+        public bool RegistryPostUpdate(IPost postData)
+        {
+            return this.InsertPostEntry("Update", postData);
+        }
+
+        /// <summary>
+        /// Insert an event of Delete in Staging Area
+        /// </summary>
+        /// <param name="postData"></param>
+        /// <returns></returns>
+        public bool RegistryPostDelete(IPost postData)
+        {
+            return this.InsertPostEntry("Delete", postData);
+        }
+
+        #region private methods
+
+        /// <summary>
+        /// Centralized method for insert entry in Registry Event
+        /// </summary>
+        /// <param name="eventType">name of event</param>
+        /// <param name="postEntity">post data</param>
+        /// <returns></returns>
+        private bool InsertPostEntry(string eventType, IPost postEntity)
+        {
+            RegistryEventType evType = _registryHandler.GetEventTypeBySystemName(eventType);
+            string eventPayload = "{ }";
+            string entityPayload = JsonConvert.SerializeObject(postEntity);
+            IRegistryEntityType enType = _registryHandler.GetEntityTypeBySystemName("Post");
+            return _registryHandler.Insert(evType, eventPayload, entityPayload, enType);
+        }
+        #endregion
+    }
+}

@@ -102,3 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+/Example.Blog.Web/.vs/Example.Blog.Web/v16
+/Example.Blog.Web/Example.Blog.BL/obj
+/Example.Blog.Web/Example.Blog.DAL.Fake/obj
+/Example.Blog.Web/Example.Blog.Domain/obj
+/Example.Blog.Web/Example.Blog.Web/obj
+/Example.Blog.Web/Example.Blog.Web/appsettings.Development.json
+/Example.Blog.Web/Example.Blog.DAL.Fake/bin/Debug/netstandard2.0
+/Example.Blog.Web/Example.Blog.Domain/bin/Debug/netstandard2.0
+/Example.Blog.Web/Example.Blog.Web/bin/Debug/netcoreapp3.1
