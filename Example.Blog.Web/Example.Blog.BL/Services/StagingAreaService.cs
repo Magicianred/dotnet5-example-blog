@@ -1,6 +1,7 @@
-﻿using Example.Blog.Domain.Enums;
-using Example.Blog.Domain.Interfaces.Models;
+﻿using Example.Blog.Domain.Interfaces.Models;
 using Example.Blog.Domain.Interfaces.Services;
+using Magicianred.RegistryArea.Domain.Interfaces.Handlers;
+using Magicianred.RegistryArea.Domain.Interfaces.Models;
 using Newtonsoft.Json;
 
 namespace Example.Blog.BL.Services
@@ -55,7 +56,7 @@ namespace Example.Blog.BL.Services
         /// <returns></returns>
         private bool InsertPostEntry(string eventType, IPost postEntity)
         {
-            RegistryEventType evType = _registryHandler.GetEventTypeBySystemName(eventType);
+            IRegistryEventType evType = _registryHandler.GetEventTypeBySystemName(eventType);
             string eventPayload = "{ }";
             string entityPayload = JsonConvert.SerializeObject(postEntity);
             IRegistryEntityType enType = _registryHandler.GetEntityTypeBySystemName("Post");

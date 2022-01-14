@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Example.Blog.Domain\Example.Blog.Domain.csproj" />
+    <ProjectReference Include="..\RegistryArea\Magicianred.RegistryArea\Magicianred.RegistryArea.Domain\Magicianred.RegistryArea.Domain.csproj" />
   </ItemGroup>
 
 </Project>
